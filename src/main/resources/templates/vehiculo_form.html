@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Vehicular</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            max-width: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h1>Salida o Admisión Temporal de Vehículo</h1>
+<form th:action="@{/vehiculos}" method="post" th:object="${vehiculoForm}">
+    <label>Patente: <input type="text" th:field="*{patente}" required></label><br>
+    <label>Marca: <input type="text" th:field="*{marca}" required></label><br>
+    <label>Modelo: <input type="text" th:field="*{modelo}" required></label><br>
+    <label>Tipo de Vehículo:
+        <select th:field="*{tipo}">
+            <option value="Auto">Auto</option>
+            <option value="Camioneta">Camioneta</option>
+            <option value="Camion">Camión</option>
+            <option value="Bus">Bus</option>
+        </select>
+    </label><br>
+    <label>País de Origen: <input type="text" th:field="*{paisOrigen}" required></label><br>
+    <button type="submit">Guardar</button>
+</form>
+<a th:href="@{/inicio}" style="margin-top:1em;">Volver al inicio</a>
+<a th:href="@{/vehiculos/lista}" style="margin-top:1em;">Ver registros</a>
+<form th:action="@{/logout}" method="get" style="margin-top:1em;">
+    <button type="submit">Cerrar sesión</button>
+</form>
+</body>
+</html>

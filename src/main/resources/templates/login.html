@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+<h1>Ingreso al Sistema</h1>
+<form th:action="@{/login}" method="post" th:object="${usuario}">
+    <label>Correo: <input type="text" th:field="*{correo}" required></label><br>
+    <label>Contraseña: <input type="password" th:field="*{contraseña}" required></label><br>
+    <button type="submit">Entrar</button>
+</form>
+<a th:href="@{/registro}" style="margin-top:1em;">Registrarse</a>
+<p th:if="${error}" th:text="${error}" class="error"></p>
+</body>
+</html>
+

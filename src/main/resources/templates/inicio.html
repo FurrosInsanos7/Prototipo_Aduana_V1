@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="'Bienvenido, ' + ${usuario.nombre}">Bienvenido</h1>
+<form th:action="@{/personas}" method="get">
+    <button type="submit">Registrar Persona</button>
+</form>
+<form th:action="@{/mascotas}" method="get">
+    <button type="submit">Registrar Mascota</button>
+</form>
+<form th:action="@{/vehiculos}" method="get">
+    <button type="submit">Registrar Vehículo</button>
+</form>
+<div th:if="${usuario.rol == 'admin'}">
+    <form th:action="@{/usuarios/lista}" method="get">
+        <button type="submit">Gestionar Usuarios</button>
+    </form>
+</div>
+<form th:action="@{/logout}" method="get" style="margin-top:1em;">
+    <button type="submit">Cerrar sesión</button>
+</form>
+</body>
+</html>

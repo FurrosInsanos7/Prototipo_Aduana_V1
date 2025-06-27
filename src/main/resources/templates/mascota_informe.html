@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros de Mascotas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        td, th { border: 1px solid #ccc; padding: 0.5em; }
+    </style>
+</head>
+<body>
+<h1>Registros de Mascotas</h1>
+<a th:href="@{/inicio}" style="margin-bottom:1em;">Volver al inicio</a>
+<a th:href="@{/mascotas}">Nuevo registro</a>
+<a th:href="@{/mascotas/export}" style="margin-left:1em;">Descargar CSV</a>
+<form th:action="@{/logout}" method="get" style="margin-top:1em;">
+    <button type="submit">Cerrar sesión</button>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th>Tipo</th>
+            <th>País Origen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="mas : ${mascotas}">
+            <td th:text="${mas.usuario.nombre}"></td>
+            <td th:text="${mas.nombre}"></td>
+            <td th:text="${mas.especie}"></td>
+            <td th:text="${mas.tipo}"></td>
+            <td th:text="${mas.paisOrigen}"></td>
+            <td><a th:href="@{/mascotas/eliminar/{id}(id=${mas.id})}">Eliminar</a></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
