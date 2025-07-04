@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -105,5 +108,30 @@ public class VehiculoFormController {
     @ResponseBody
     public List<VehiculoForm> obtenerVehiculos() {
         return vehiculoFormService.obtenerVehiculoForms();
+    }
+
+    @PostMapping("/api/vehiculos")
+    @ResponseBody
+    public VehiculoForm crearVehiculo(@RequestBody VehiculoForm vehiculo) {
+        return vehiculoFormService.guardarVehiculoForm(vehiculo);
+    }
+
+    @GetMapping("/api/vehiculos/{id}")
+    @ResponseBody
+    public VehiculoForm obtenerVehiculo(@PathVariable int id) {
+        return vehiculoFormService.obtenerVehiculoFormPorId(id);
+    }
+
+    @PutMapping("/api/vehiculos/{id}")
+    @ResponseBody
+    public VehiculoForm actualizarVehiculo(@PathVariable int id, @RequestBody VehiculoForm vehiculo) {
+        vehiculo.setId(id);
+        return vehiculoFormService.guardarVehiculoForm(vehiculo);
+    }
+
+    @DeleteMapping("/api/vehiculos/{id}")
+    @ResponseBody
+    public void eliminarVehiculoApi(@PathVariable int id) {
+        vehiculoFormService.eliminarVehiculoForm(id);
     }
 }

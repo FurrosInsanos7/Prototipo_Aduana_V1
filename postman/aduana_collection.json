@@ -1,0 +1,127 @@
+{
+  "info": {
+    "name": "Aduana API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar Usuarios",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/usuarios"
+      }
+    },
+    {
+      "name": "Crear Usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Test\",\n  \"correo\": \"test@example.com\",\n  \"contrase\u00f1a\": \"1234\",\n  \"rol\": \"usuario\"\n}"
+        },
+        "url": "http://localhost:8080/api/usuarios"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"correo\": \"test@example.com\",\n  \"contrase\u00f1a\": \"1234\"\n}"
+        },
+        "url": "http://localhost:8080/api/login"
+      }
+    },
+    {
+      "name": "Listar Formularios",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/formularios"
+      }
+    },
+    {
+      "name": "Crear Formulario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan\",\n  \"tipoDocumento\": \"DNI\",\n  \"numeroDocumento\": \"12345678\",\n  \"paisNacimiento\": \"AR\",\n  \"tipo\": \"persona\"\n}"
+        },
+        "url": "http://localhost:8080/api/formularios"
+      }
+    },
+    {
+      "name": "Listar Personas",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/personaForms"
+      }
+    },
+    {
+      "name": "Crear Persona",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan\",\n  \"tipoDocumento\": \"DNI\",\n  \"numeroDocumento\": \"87654321\",\n  \"paisNacimiento\": \"AR\"\n}"
+        },
+        "url": "http://localhost:8080/api/personaForms"
+      }
+    },
+    {
+      "name": "Listar Mascotas",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/mascotas"
+      }
+    },
+    {
+      "name": "Crear Mascota",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Fido\",\n  \"especie\": \"Perro\",\n  \"tipo\": \"Domestico\",\n  \"paisOrigen\": \"AR\"\n}"
+        },
+        "url": "http://localhost:8080/api/mascotas"
+      }
+    },
+    {
+      "name": "Listar Vehiculos",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/vehiculos"
+      }
+    },
+    {
+      "name": "Crear Vehiculo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patente\": \"AAA111\",\n  \"marca\": \"Ford\",\n  \"modelo\": \"Fiesta\",\n  \"tipo\": \"Auto\",\n  \"paisOrigen\": \"AR\"\n}"
+        },
+        "url": "http://localhost:8080/api/vehiculos"
+      }
+    }
+  ]
+}

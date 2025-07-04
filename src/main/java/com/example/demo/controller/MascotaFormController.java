@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -101,5 +104,30 @@ public class MascotaFormController {
     @ResponseBody
     public List<MascotaForm> obtenerMascotas() {
         return mascotaFormService.obtenerMascotaForms();
+    }
+
+    @PostMapping("/api/mascotas")
+    @ResponseBody
+    public MascotaForm crearMascota(@RequestBody MascotaForm mascota) {
+        return mascotaFormService.guardarMascotaForm(mascota);
+    }
+
+    @GetMapping("/api/mascotas/{id}")
+    @ResponseBody
+    public MascotaForm obtenerMascota(@PathVariable int id) {
+        return mascotaFormService.obtenerMascotaFormPorId(id);
+    }
+
+    @PutMapping("/api/mascotas/{id}")
+    @ResponseBody
+    public MascotaForm actualizarMascota(@PathVariable int id, @RequestBody MascotaForm mascota) {
+        mascota.setId(id);
+        return mascotaFormService.guardarMascotaForm(mascota);
+    }
+
+    @DeleteMapping("/api/mascotas/{id}")
+    @ResponseBody
+    public void eliminarMascotaApi(@PathVariable int id) {
+        mascotaFormService.eliminarMascotaForm(id);
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -167,6 +169,26 @@ public class UsuarioController {
         } else {
             return "Credenciales incorrectas";  // Retorna mensaje de error
         }
+    }
+
+    // API adicional para operaciones CRUD de usuario
+    @GetMapping("/api/usuarios/{id}")
+    @ResponseBody
+    public Usuario obtenerUsuario(@PathVariable int id) {
+        return usuarioService.obtenerUsuarioPorId(id);
+    }
+
+    @PutMapping("/api/usuarios/{id}")
+    @ResponseBody
+    public Usuario actualizarUsuario(@PathVariable int id, @RequestBody Usuario usuario) {
+        usuario.setId(id);
+        return usuarioService.guardarUsuario(usuario);
+    }
+
+    @DeleteMapping("/api/usuarios/{id}")
+    @ResponseBody
+    public void eliminarUsuarioApi(@PathVariable int id) {
+        usuarioService.eliminarUsuario(id);
     }
 
     @GetMapping("/logout")

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.validation.BindingResult;
@@ -131,5 +134,30 @@ public class PersonaFormController {
     @ResponseBody
     public List<PersonaForm> obtenerPersonaForms() {
         return personaFormService.obtenerPersonaForms();
+    }
+
+    @PostMapping("/api/personaForms")
+    @ResponseBody
+    public PersonaForm crearPersonaForm(@RequestBody PersonaForm personaForm) {
+        return personaFormService.guardarPersonaForm(personaForm);
+    }
+
+    @GetMapping("/api/personaForms/{id}")
+    @ResponseBody
+    public PersonaForm obtenerPersonaForm(@PathVariable int id) {
+        return personaFormService.obtenerPersonaFormPorId(id);
+    }
+
+    @PutMapping("/api/personaForms/{id}")
+    @ResponseBody
+    public PersonaForm actualizarPersonaForm(@PathVariable int id, @RequestBody PersonaForm personaForm) {
+        personaForm.setId(id);
+        return personaFormService.guardarPersonaForm(personaForm);
+    }
+
+    @DeleteMapping("/api/personaForms/{id}")
+    @ResponseBody
+    public void eliminarPersonaFormApi(@PathVariable int id) {
+        personaFormService.eliminarPersonaForm(id);
     }
 }
