@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import jakarta.servlet.http.HttpSession;
@@ -124,5 +127,30 @@ public class FormularioController {
     @ResponseBody
     public List<Formulario> obtenerFormularios() {
         return formularioService.obtenerFormularios();
+    }
+
+    @PostMapping("/api/formularios")
+    @ResponseBody
+    public Formulario crearFormulario(@RequestBody Formulario formulario) {
+        return formularioService.guardarFormulario(formulario);
+    }
+
+    @GetMapping("/api/formularios/{id}")
+    @ResponseBody
+    public Formulario obtenerFormulario(@PathVariable int id) {
+        return formularioService.obtenerFormularioPorId(id);
+    }
+
+    @PutMapping("/api/formularios/{id}")
+    @ResponseBody
+    public Formulario actualizarFormulario(@PathVariable int id, @RequestBody Formulario formulario) {
+        formulario.setId(id);
+        return formularioService.guardarFormulario(formulario);
+    }
+
+    @DeleteMapping("/api/formularios/{id}")
+    @ResponseBody
+    public void eliminarFormularioApi(@PathVariable int id) {
+        formularioService.eliminarFormulario(id);
     }
 }
