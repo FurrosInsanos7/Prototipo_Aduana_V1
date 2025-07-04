@@ -2,40 +2,72 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <title>Registro SIGCFA</title>
     <style>
         body {
+            background: #F5F7FA;
             font-family: Arial, sans-serif;
             margin: 0;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 360px;
+            text-align: center;
         }
+        .card img.logo {
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+        h1 { margin:0; font-size:2rem; }
+        h2 { margin:0.25rem 0; font-weight:normal; color:#555; }
+        hr { margin:1rem 0; border:none; border-top:1px solid #e5e7eb; }
+        .btn { width:100%; padding:0.6rem; border-radius:4px; font-size:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:0.5rem; cursor:pointer; }
+        .btn-google { background:#4285F4; color:#fff; border:none; }
+        .btn-cu { background:#fff; color:#374151; border:1px solid #d1d5db; }
+        form { display:flex; flex-direction:column; gap:0.5rem; }
+        .names { display:flex; gap:0.5rem; }
+        .names input { flex:1; }
+        input[type="text"], input[type="password"], input[type="email"] {
+            padding:0.5rem; border:1px solid #d1d5db; border-radius:4px; width:100%;
+        }
+        .btn-register { background:#1259C5; color:#fff; border:none; margin-top:1rem; }
+        .hint { color:#6b7280; font-size:0.9rem; margin:1rem 0; }
+        .small-link { color:#1259C5; font-size:0.9rem; text-decoration:none; }
     </style>
 </head>
 <body>
-<h1>Registro de Usuario</h1>
-<form th:action="@{/registro}" method="post" th:object="${usuario}">
-    <label>Nombre: <input type="text" th:field="*{nombre}" required></label><br>
-    <label>Correo: <input type="email" th:field="*{correo}" required></label><br>
-    <label>Contraseña: <input type="password" th:field="*{contraseña}" required></label><br>
-    <label>Rol:
-        <select th:field="*{rol}">
-            <option value="usuario">Usuario</option>
-            <option value="admin">Admin</option>
-        </select>
-    </label><br>
-    <button type="submit">Registrar</button>
-</form>
-<form th:action="@{/login}" method="get" style="margin-top:1em;">
-    <button type="submit">Volver al login</button>
-</form>
+<div class="card">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Logo_Servicio_Nacional_de_Aduanas_%28Chile%29.jpg" alt="Aduanas Chile">
+    <h1>SIGCFA</h1>
+    <h2>Registro</h2>
+    <div class="hint">Registro Rápido</div>
+    <hr>
+    <button class="btn btn-google" type="button">
+        <img src="https://img.icons8.com/color/24/000000/google-logo.png" alt="Google">
+        Regístrate con Google
+    </button>
+    <button class="btn btn-cu" type="button">
+        <img src="https://dummyimage.com/24x24/000/fff.png&text=CU" alt="ClaveÚnica">
+        ClaveÚnica
+    </button>
+    <p class="hint">O usa tu Correo Electrónico</p>
+    <form th:action="@{/registro}" method="post" th:object="${usuario}">
+        <div class="names">
+            <input type="text" placeholder="Primer Nombre" th:field="*{nombre}" required>
+            <input type="text" placeholder="Segundo Nombre">
+        </div>
+        <input type="email" placeholder="Correo Electrónico" th:field="*{correo}" required>
+        <input type="password" placeholder="Contraseña" th:field="*{contraseña}" required>
+        <button class="btn btn-register" type="submit">Registrarse</button>
+    </form>
+    <a th:href="@{/login}" class="small-link" style="margin-top:0.5rem;display:block;">Volver al Login</a>
+</div>
 </body>
 </html>
